@@ -37,17 +37,17 @@ const musicQualities = {
     MP3_128: {
         id: 1,
         name: 'MP3 - 128 kbps',
-        aproxMaxSizeMb: '100'
+        approxMaxSizeMb: '100'
     },
     MP3_320: {
         id: 3,
         name: 'MP3 - 320 kbps',
-        aproxMaxSizeMb: '200'
+        approxMaxSizeMb: '200'
     },
     FLAC: {
         id: 9,
         name: 'FLAC - 1411 kbps',
-        aproxMaxSizeMb: '700'
+        approxMaxSizeMb: '700'
     },
     MP3_MISC: {
         id: 0,
@@ -1082,7 +1082,7 @@ function downloadMultiple(type, id) {
  */
 function getNumberOfParallelDownloads() {
     let freeMemoryMb;
-    const approxMaxSizeMb = selectedMusicQuality.aproxMaxSizeMb;
+    const approxMaxSizeMb = selectedMusicQuality.approxMaxSizeMb;
 
     try {
         freeMemoryMb = memoryStats.free() / 1024 / 1024;
