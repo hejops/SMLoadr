@@ -402,34 +402,8 @@ function selectMusicQuality() {
             }
         }
     } else {
-        inquirer.prompt([
-            {
-                type: 'list',
-                name: 'musicQuality',
-                prefix: '♫',
-                message: 'Select music quality:',
-                choices: [
-                    'MP3  - 128  kbps',
-                    'MP3  - 320  kbps',
-                    'FLAC - 1411 kbps'
-                ],
-                default: 1
-            }
-        ]).then((answers) => {
-            switch (answers.musicQuality) {
-                case 'MP3  - 128  kbps':
-                    selectedMusicQuality = musicQualities.MP3_128;
-                    break;
-                case 'MP3  - 320  kbps':
-                    selectedMusicQuality = musicQualities.MP3_320;
-                    break;
-                case 'FLAC - 1411 kbps':
-                    selectedMusicQuality = musicQualities.FLAC;
-                    break;
-            }
-
-            selectDownloadMode();
-        });
+            console.log('Interactive usage is disabled in this fork');
+		process.exit(1);
     }
 }
 
