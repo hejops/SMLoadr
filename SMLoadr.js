@@ -352,16 +352,16 @@ function selectMusicQuality() {
         if (cliHelp || null === cliHelp) {
             const helpSections = [
                 {
-                    header: 'CLI Options',
+                    header: 'Usage',
                     optionList: cliOptionDefinitions
-                },
-                {
-                    content: 'More help here: https://git.fuwafuwa.moe/SMLoadrDev/SMLoadr',
                 }
+                // {
+                //     content: 'More help here: https://git.fuwafuwa.moe/SMLoadrDev/SMLoadr',
+                // }
             ];
 
             console.log(commandLineUsage(helpSections));
-            process.exit(1);
+            process.exit(2);
         } else {
             let cliUrl = cliOptions['url'];
             let cliQuality = cliOptions['quality'];
@@ -391,7 +391,7 @@ function selectMusicQuality() {
                 startDownload(cliUrl).then(() => {
                     setTimeout(() => {
                         setTimeout(() => {
-                            process.exit(1);
+                            process.exit(0);
                         }, 100);
                     }, 100);
                 }).catch((err) => {
@@ -493,7 +493,7 @@ function downloadLinksFromFile() {
 
         if (isCli) {
             setTimeout(() => {
-                process.exit(1);
+                process.exit(0);
             }, 100);
         } else {
             console.log('\n');
