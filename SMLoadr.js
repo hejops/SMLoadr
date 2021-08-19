@@ -1,3 +1,4 @@
+#!/bin/env node
 const Promise = require('bluebird');
 const chalk = require('chalk');
 const ora = require('ora');
