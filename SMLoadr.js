@@ -98,11 +98,8 @@ const isCli = process.argv.length > 2;
 
 const downloadSpinner = new ora({
     spinner: {
-        interval: 400,
-        frames: [
-            '♫',
-            ' '
-        ]
+        // interval: 400,
+        frames: [ '>' ]
     },
     color: 'white'
 });
@@ -180,12 +177,6 @@ function initRequest() {
         console.error('\n' + err + '\nUncaught Exception thrown' + '\n');
         process.exit(1);
     });
-
-    // App info
-    console.log(chalk.cyan('╔══════════════════════════════════════════════════════════════════╗'));
-    console.log(chalk.cyan('║') + chalk.bold.yellow('                          SMLoadr v' + packageJson.version + '                         ') + chalk.cyan('║'));
-    console.log(chalk.cyan('╚══════════════════════════════════════════════════════════════════╝'));
-
 
     if (!fs.existsSync(DOWNLOAD_LINKS_FILE)) {
         ensureDir(DOWNLOAD_LINKS_FILE);
@@ -323,8 +314,8 @@ function initDeezerCredentials() {
                 {
                     type: 'input',
                     name: 'arl',
-                    prefix: '♫',
-                    message: 'arl cookie:'
+                    prefix: '>',
+                    message: 'Input arl cookie:'
                 }
             ];
 
@@ -392,7 +383,7 @@ function selectMusicQuality() {
             DOWNLOAD_DIR = nodePath.normalize(cliPath).replace(/\/$|\\$/, '');
             DOWNLOAD_MODE = cliDownloadMode;
 
-            downloadSpinner.warn(chalk.yellow('Do not scroll while downloading! This will mess up the UI!'));
+            // downloadSpinner.warn(chalk.yellow('Do not scroll while downloading! This will mess up the UI!'));
 
             if ('all' === DOWNLOAD_MODE) {
                 downloadLinksFromFile();
@@ -461,7 +452,7 @@ function selectDownloadMode() {
     ]).then((answers) => {
         if ('All    (Download all links in "' + DOWNLOAD_LINKS_FILE + '")' === answers.downloadMode) {
             console.log('');
-            downloadSpinner.warn(chalk.yellow('Do not scroll while downloading! This will mess up the UI!'));
+            // downloadSpinner.warn(chalk.yellow('Do not scroll while downloading! This will mess up the UI!'));
 
             downloadLinksFromFile();
         } else {
@@ -565,7 +556,7 @@ function askForNewDownload() {
     ];
 
     inquirer.prompt(questions).then(answers => {
-        downloadSpinner.warn(chalk.yellow('Do not scroll while downloading! This will mess up the UI!'));
+        // downloadSpinner.warn(chalk.yellow('Do not scroll while downloading! This will mess up the UI!'));
 
         startDownload(answers.deezerUrl).then(() => {
             askForNewDownload();
@@ -735,7 +726,7 @@ class downloadState {
                 finishedPercentage = (this.numberTracksFinished / this.numberTracksToDownload * 100).toFixed(2);
             }
 
-            let downloadSpinnerText = chalk.green('Downloading ' + downloadTypeAndName + ' [' + this.numberTracksFinished + '/' + this.numberTracksToDownload + ' - ' + finishedPercentage + '%]:\n');
+            let downloadSpinnerText = chalk('Downloading ' + downloadTypeAndName + ' [' + this.numberTracksFinished + '/' + this.numberTracksToDownload + ' - ' + finishedPercentage + '%]:\n');
 
             if (0 < Object.keys(this.currentlyDownloading).length) {
                 downloadSpinnerText += '  › ' + Object.values(this.currentlyDownloading).join('\n  › ');
